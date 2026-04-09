@@ -6,6 +6,31 @@ Instead of forking upstream and maintaining patches, it pulls a fresh copy on ev
 
 Nothing hidden, no magic. Just a controlled build process.
 
+## In plain words
+
+This extension makes MeshCore on ESP32 much easier to run as a real repeater node day to day.
+
+You get an HTTP debug/ops panel, so most setup can be done from a browser instead of CLI.  
+That includes regular node settings and location selection on a map.
+
+The panel also shows live repeater state: visible neighbors (from adverts), map markers, MQTT state, and runtime activity.
+
+There is a `/stats` JSON endpoint (Meshtastic-style structure), so it is easy to integrate with external tools like Home Assistant.
+
+There is also:
+
+- `/config-export` for config export
+- config import support
+- `/health` returning `OK` for simple monitoring
+
+MQTT reporting is included as publish-only mode.  
+You can use LetsMesh observer flows or your own broker setup.
+
+Under the hood this is still an overlay, not an upstream fork.  
+Build pulls clean MeshCore and layers this functionality on top, which keeps updates manageable.
+
+If you already use MeshCore and want a repeater that is easy to monitor and configure from a browser, this is exactly what it is for.
+
 ## Why this repo stands out
 
 - Deterministic injection contract
