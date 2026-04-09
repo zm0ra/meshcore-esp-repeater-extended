@@ -1,14 +1,21 @@
 # MeshCore ESP Repeater Extended
 
-This repo is a thin overlay on top of MeshCore focused on running it as a repeater.
+This repo is a thin build overlay system on top of MeshCore focused on running it as a repeater.
 
-Instead of forking upstream and maintaining patches, it pulls a fresh copy on every build and injects only what is needed: WiFi TCP bridge, simple HTTP panel, and MQTT reporting.
+Instead of forking upstream and maintaining patches, it pulls a fresh copy on every build and injects only what is needed: WiFi TCP bridge, HTTP debug/ops panel, and MQTT reporting.
 
 Nothing hidden, no magic. Just a controlled build process.
 
+## Why this repo stands out
+
+- Deterministic injection contract
+- Exact-once marker validation
+- No long-lived patch stack
+- Runtime-first configuration model
+
 ## What this is
 
-- Overlay build system for MeshCore
+- Build overlay layer for MeshCore
 - Adds repeater-oriented features
 - Keeps upstream untouched
 - Fails fast when something breaks upstream
@@ -30,7 +37,7 @@ Build flow:
 5. Build with PlatformIO
 
 All actual logic is in `custom/src/*.cpp`.
-The injection step is only wiring.
+The injection step is only wiring: no AST, no patch files, just anchor-based text injection.
 
 ## Repo layout
 
@@ -87,10 +94,12 @@ Compile-time config lives in `config/*.env`.
 Runtime config is handled via web UI.
 
 Only required bootstrap values go into env files.
+Everything else should stay runtime-configurable.
 
 ## MQTT
 
 Disabled by default.
+MQTT mode here is publish-only.
 
 To enable:
 
@@ -104,8 +113,8 @@ Missing config stops the build early.
 ## Runtime
 
 - WiFi + TCP bridge
-- HTTP panel at `/`, `/stats`, `/health`
-- MQTT publish
+- HTTP debug/ops panel at `/`, `/stats`, `/health`
+- MQTT publish-only reporting
 - In-memory state and logs
 
 Everything is in `custom/src/`.
