@@ -1,0 +1,8 @@
+build/
+.tools/
+.artifacts/
+*.log
+*.tmp
+*.swp
+.DS_Store
+config/local.env
