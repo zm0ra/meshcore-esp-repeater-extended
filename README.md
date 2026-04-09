@@ -24,7 +24,7 @@ There is also:
 - `/health` returning `OK` for simple monitoring
 
 MQTT reporting is included as publish-only mode.  
-You can use LetsMesh observer flows or your own broker setup.
+You can use LetsMesh observer flows or your own broker setup (for example `mqtt.meshstats.pl`).
 
 Under the hood this is still an overlay, not an upstream fork.  
 Build pulls clean MeshCore and layers this functionality on top, which keeps updates manageable.
@@ -132,6 +132,16 @@ To enable:
 - `--mqtt-iata <code>`
 
 You also need at least one broker (`--letsmesh` or custom broker args).
+
+Custom broker example:
+
+```bash
+./build.sh --build --mqtt-enable --mqtt-iata ABC \
+  --mqtt-custom-name meshstats \
+  --mqtt-custom-host mqtt.meshstats.pl \
+  --mqtt-custom-user <user> \
+  --mqtt-custom-pass <pass>
+```
 
 Missing config stops the build early.
 
