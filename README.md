@@ -183,6 +183,16 @@ Main real-device testing was done on **Seeed XIAO ESP32S3** (`xiao_s3_wio`).
 
 Additional target profiles are included for other ESP32 boards (for example Heltec V3), but XIAO S3 is currently the primary validated path.
 
+Last verified 2026-07-29 against upstream **v1.16.0**, built as `v1.16.0-extended` and flashed onto a live repeater. Identity, radio settings and coordinates survived the upgrade. WiFi, HTTP panel, `/health`, `/stats` and MQTT publishing came up with no manual reconfiguration.
+
+## Remote flashing
+
+Node in another location with a Raspberry Pi on USB next to it: build on a workstation, use the Pi
+only to flash. A Pi Zero 2 W cannot compile MeshCore, and host load during the write is what breaks
+most flashing attempts.
+
+See [docs/remote-flashing-rpi.md](docs/remote-flashing-rpi.md).
+
 ## Notes
 
 - `config/local.env` is local only (gitignored)
@@ -192,4 +202,5 @@ Additional target profiles are included for other ESP32 boards (for example Helt
 ## Docs
 
 - Injection contract: [docs/injection-contract.md](docs/injection-contract.md)
+- Remote flashing through a Raspberry Pi: [docs/remote-flashing-rpi.md](docs/remote-flashing-rpi.md)
 - Screenshot walkthrough: [docs/demo/screenshots/README.md](docs/demo/screenshots/README.md)
